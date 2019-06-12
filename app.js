@@ -3,12 +3,16 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var compression = require('compression');
+var helmet = require('helmet');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const catalogRouter = require('./routes/catalog');
 
 var app = express();
+app.use(helmet());
+app.use(compression());
 const mongoose = require('mongoose');
 var dev_db_url = 'mongodb+srv://sagar:coolpass@cluster0-7su9p.mongodb.net/test?retryWrites=true&w=majority';
 var mongoDB = process.env.MONGODB_URI || dev_db_url;
